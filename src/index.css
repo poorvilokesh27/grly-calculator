@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.font-display {
+  font-family: "Fredoka", sans-serif;
+}
+.font-body {
+  font-family: "Quicksand", sans-serif;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(8deg);
+  }
+}
+
+@keyframes shakeErr {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px) rotate(-1deg);
+  }
+  40% {
+    transform: translateX(8px) rotate(1deg);
+  }
+  60% {
+    transform: translateX(-6px);
+  }
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+@keyframes holo {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.holo-border {
+  background: linear-gradient(120deg, #ff5fa2, #c9a7ff, #a8ffeb, #ff5fa2);
+  background-size: 300% 300%;
+  animation: holo 6s ease infinite;
+}
+
+.shake-anim {
+  animation: shakeErr 0.45s ease;
+}
+
+.sparkle {
+  position: absolute;
+  animation: floaty 5s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+body {
+  margin: 0;
+}

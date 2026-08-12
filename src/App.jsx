@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Delete, Sparkles } from "lucide-react";
 
 const ERRORS = {
   letters: [
@@ -24,9 +23,10 @@ function pick(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
-const BTN = "rounded-2xl font-semibold text-lg transition-all duration-150 active:scale-90 select-none";
+const BTN =
+  "rounded-2xl font-semibold text-lg transition-all duration-150 active:scale-90 select-none";
 
-export default function GirlyCalculator() {
+export default function App() {
   const [expr, setExpr] = useState("");
   const [result, setResult] = useState("");
   const [msg, setMsg] = useState("");
@@ -74,7 +74,9 @@ export default function GirlyCalculator() {
     }
     try {
       // eslint-disable-next-line no-new-func
-      const val = Function('"use strict"; return (' + expr.replace(/%/g, "/100*") + ")")();
+      const val = Function(
+        '"use strict"; return (' + expr.replace(/%/g, "/100*") + ")"
+      )();
       if (val === Infinity || val === -Infinity) {
         fireError("zero");
         return;
@@ -108,60 +110,54 @@ export default function GirlyCalculator() {
   ];
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center relative overflow-hidden"
+    <div
+      className="min-h-screen w-full flex items-center justify-center relative overflow-hidden"
       style={{
-        background: "radial-gradient(circle at 20% 20%, #FFE1F0 0%, #E8D5FF 45%, #2A1B3D 100%)",
-      }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;500;700&display=swap');
-        .font-display { font-family: 'Fredoka', sans-serif; }
-        .font-body { font-family: 'Quicksand', sans-serif; }
-        @keyframes floaty {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-14px) rotate(8deg); }
-        }
-        @keyframes shakeErr {
-          0%, 100% { transform: translateX(0); }
-          20% { transform: translateX(-8px) rotate(-1deg); }
-          40% { transform: translateX(8px) rotate(1deg); }
-          60% { transform: translateX(-6px); }
-          80% { transform: translateX(6px); }
-        }
-        @keyframes holo {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .holo-border {
-          background: linear-gradient(120deg, #FF5FA2, #C9A7FF, #A8FFEB, #FF5FA2);
-          background-size: 300% 300%;
-          animation: holo 6s ease infinite;
-        }
-        .shake-anim { animation: shakeErr 0.45s ease; }
-        .sparkle {
-          position: absolute;
-          animation: floaty 5s ease-in-out infinite;
-          opacity: 0.7;
-        }
-      `}</style>
-
-      <span className="sparkle" style={{ top: "8%", left: "10%", fontSize: 28, animationDelay: "0s" }}>✨</span>
-      <span className="sparkle" style={{ top: "18%", right: "12%", fontSize: 22, animationDelay: "1.2s" }}>💖</span>
-      <span className="sparkle" style={{ bottom: "12%", left: "8%", fontSize: 26, animationDelay: "2s" }}>🎀</span>
-      <span className="sparkle" style={{ bottom: "20%", right: "10%", fontSize: 24, animationDelay: "0.6s" }}>💅</span>
+        background:
+          "radial-gradient(circle at 20% 20%, #FFE1F0 0%, #E8D5FF 45%, #2A1B3D 100%)",
+      }}
+    >
+      <span
+        className="sparkle"
+        style={{ top: "8%", left: "10%", fontSize: 28, animationDelay: "0s" }}
+      >
+        ✨
+      </span>
+      <span
+        className="sparkle"
+        style={{ top: "18%", right: "12%", fontSize: 22, animationDelay: "1.2s" }}
+      >
+        💖
+      </span>
+      <span
+        className="sparkle"
+        style={{ bottom: "12%", left: "8%", fontSize: 26, animationDelay: "2s" }}
+      >
+        🎀
+      </span>
+      <span
+        className="sparkle"
+        style={{ bottom: "20%", right: "10%", fontSize: 24, animationDelay: "0.6s" }}
+      >
+        💅
+      </span>
 
       <div className="relative z-10 w-[340px] rounded-[36px] p-1 holo-border shadow-2xl">
-        <div className="rounded-[32px] p-5 backdrop-blur-xl" style={{ background: "rgba(255,255,255,0.85)" }}>
-          {/* Header */}
+        <div
+          className="rounded-[32px] p-5 backdrop-blur-xl"
+          style={{ background: "rgba(255,255,255,0.85)" }}
+        >
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles size={20} color="#FF5FA2" />
-            <h1 className="font-display text-xl font-700" style={{ color: "#3B1E54" }}>
+            <span style={{ color: "#FF5FA2", fontSize: 20 }}>✨</span>
+            <h1
+              className="font-display text-xl font-bold"
+              style={{ color: "#3B1E54" }}
+            >
               girlie calc
             </h1>
-            <Sparkles size={20} color="#FF5FA2" />
+            <span style={{ color: "#FF5FA2", fontSize: 20 }}>✨</span>
           </div>
 
-          {/* Display */}
           <div
             className={`rounded-2xl p-4 mb-4 ${shake ? "shake-anim" : ""}`}
             style={{
@@ -179,20 +175,21 @@ export default function GirlyCalculator() {
               className="w-full bg-transparent outline-none text-right font-body text-lg"
               style={{ color: "#3B1E54" }}
             />
-            <div className="text-right font-display text-3xl font-700 mt-1 truncate" style={{ color: "#7C3AED" }}>
+            <div
+              className="text-right font-display text-3xl font-bold mt-1 truncate"
+              style={{ color: "#7C3AED" }}
+            >
               {msg ? "😭" : result || "\u00A0"}
             </div>
           </div>
 
-          {/* Error message banner */}
           <div
-            className="min-h-[38px] flex items-center justify-center text-center px-2 mb-3 font-body font-500 text-sm transition-opacity duration-200"
+            className="min-h-[38px] flex items-center justify-center text-center px-2 mb-3 font-body font-medium text-sm transition-opacity duration-200"
             style={{ color: "#FF5FA2", opacity: msg ? 1 : 0 }}
           >
             {msg || "placeholder"}
           </div>
 
-          {/* Keypad */}
           <div className="grid grid-cols-4 gap-2 mb-2">
             {opBtns.map((b) => (
               <button
@@ -233,7 +230,7 @@ export default function GirlyCalculator() {
               className={`${BTN} py-3 flex items-center justify-center`}
               style={{ background: "#FFB3C6", color: "#fff" }}
             >
-              <Delete size={20} />
+              ⌫
             </button>
             {rows[1].map((b) => (
               <button
@@ -280,7 +277,10 @@ export default function GirlyCalculator() {
             <button
               onClick={equals}
               className={`${BTN} font-display py-3 col-span-2`}
-              style={{ background: "linear-gradient(135deg, #FF5FA2, #C9A7FF)", color: "#fff" }}
+              style={{
+                background: "linear-gradient(135deg, #FF5FA2, #C9A7FF)",
+                color: "#fff",
+              }}
             >
               =
             </button>
@@ -293,7 +293,10 @@ export default function GirlyCalculator() {
             </button>
           </div>
 
-          <p className="text-center font-body text-xs mt-4" style={{ color: "#9C7EBF" }}>
+          <p
+            className="text-center font-body text-xs mt-4"
+            style={{ color: "#9C7EBF" }}
+          >
             type letters + hit = and see what happens 👀
           </p>
         </div>
